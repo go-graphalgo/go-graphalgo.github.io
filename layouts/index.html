@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Site.Title }} — Graph algorithms, in pure Go. Planned, wave 3.</title>
+<meta name="description" content="{{ .Site.Params.description }}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+{{ partial "styles.html" . }}
+</head>
+<body class="lm">
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="/"><img class="glyph" src="/img/logo.svg" width="32" height="32" alt="go-graphalgo logo"> {{ .Site.Title }}</a>
+    <nav><a href="#features">Scope</a><a href="#checks">Checks</a><a href="#repos">Repositories</a></nav>
+    {{ partial "theme-toggle.html" . }}
+  </div></header>
+  {{ partial "fork-ribbon.html" "https://github.com/go-graphalgo" }}
+
+  <div class="hero"><div class="wrap">
+    <div>
+      <h1 class="head">Graph algorithms, in pure Go.<br><span class="accent">What gonum lacks, and nothing it already has.</span></h1>
+      <p class="sub">go-graphalgo is <b>planned</b> (wave 3 of the <a href="https://github.com/go-scikit/roadmap">go-scikit roadmap</a>): <b>matching</b>, <b>isomorphism</b>, <b>cut extraction</b>, the <b>centralities</b> gonum lacks and a MATLAB-style <code>graph</code>/<code>digraph</code> facade over <code>gonum/graph</code>, validated against NetworkX. No repository holds code yet.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://go-graphalgo.github.io/docs/">{{ partial "icons/book.html" . }}Read the plan →</a>
+        <a class="btn btn-ghost" href="https://github.com/go-scikit/roadmap/blob/main/PLAN.md">{{ partial "icons/github.html" . }}PLAN.md →</a>
+      </div>
+      <div class="trust"><span><b>planned</b> (wave 3)</span><span><b>{{ len .Site.Params.packages }}</b> packages in the plan</span><span><b>CGO=0</b> pure Go</span></div>
+    </div>
+    <div class="term">
+      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">status</span></div>
+<pre style="white-space:pre;overflow-x:auto;tab-size:4">status    planned (wave 3)
+package   graph (wave 3)
+plan      github.com/go-scikit/roadmap</pre>
+    </div>
+  </div></div>
+
+  <div class="strip"><div class="wrap">
+    <span class="lead-line">{{ len .Site.Params.repos }} repositories — <b>no library yet</b>: planned, wave 3</span>
+    <div class="mods">{{ range .Site.Params.repos }}<a href="{{ .href }}">{{ .name }}</a>{{ end }}</div>
+  </div></div>
+
+  <section id="features"><div class="wrap">
+    <span class="eyebrow">What it will cover</span>
+    <h2>Scope: graph algorithms.</h2>
+    <p class="lead">Nothing here is released. This is the scope of the plan, as <a href="https://github.com/go-scikit/roadmap/blob/main/PLAN.md">PLAN.md</a> states it: item 16 of wave 3 (go-graphalgo: matching, isomorphism, communities, the centralities gonum lacks; gonum/graph already has max flow and betweenness, so they are reused and not rewritten).</p>
+    <div class="grid">
+      <div class="card"><div class="ico">⇄</div><h3>Matching</h3><p>Hopcroft-Karp for bipartite graphs and Edmonds' blossom algorithm for general graphs: gonum has neither.</p></div>
+      <div class="card"><div class="ico">≅</div><h3>Isomorphism</h3><p>VF2 for matching subgraphs and a canonical labelling after nauty for canonical forms.</p></div>
+      <div class="card"><div class="ico">✂</div><h3>Cuts and flows</h3><p>Minimum-cut extraction from gonum's Dinic maximum flow, and push-relabel only if it is needed.</p></div>
+      <div class="card"><div class="ico">★</div><h3>Centralities</h3><p>The ones gonum lacks; Brandes betweenness, PageRank and HITS are already there and are reused.</p></div>
+      <div class="card"><div class="ico">🧩</div><h3>A MATLAB-style facade</h3><p><code>graph</code>, <code>digraph</code>, adjacency, incidence and Laplacian matrices over <code>gonum/graph</code>, which already covers the structures.</p></div>
+      <div class="card"><div class="ico">⚖️</div><h3>Licences kept clean</h3><p>NetworkX (BSD-3-Clause) is the oracle; the igraph C core (GPL-2.0) is an oracle only.</p></div>
+    </div>
+  </div></section>
+
+  <section id="checks" style="padding-top:10px"><div class="wrap">
+    <span class="eyebrow">What will be checked</span>
+    <h2>{{ len .Site.Params.checks }} kinds of check, each <i>against the reference tool of the domain</i>.</h2>
+    <p class="lead">Every item of the plan is validated against the tools that are the reference in its domain, driven as oracles from Go. These are plans, taken from the roadmap's bibliography; no result exists yet.</p>
+    <div class="grid">
+      {{ range .Site.Params.checks }}
+      <div class="card"><h3>{{ .name }}</h3><p>{{ .what | markdownify }}</p></div>
+      {{ end }}
+    </div>
+  </div></section>
+
+  <section id="repos" style="padding-top:20px"><div class="wrap">
+    <span class="eyebrow">Repositories and packages</span>
+    <h2>What is here, and what is planned.</h2>
+    <div class="road">
+      {{ range .Site.Params.repos }}
+      <div class="ph">
+        <div class="top"><h4><a href="{{ .href }}">{{ .name }}</a></h4><span class="tag active">{{ .kind }}</span></div>
+        <p>{{ .blurb | safeHTML }}</p>
+      </div>
+      {{ end }}
+      {{ range .Site.Params.packages }}
+      <div class="ph">
+        <div class="top"><h4><a href="{{ .href }}">{{ .name }}</a></h4><span class="tag active">planned (wave {{ .wave }})</span></div>
+        <p>{{ .blurb }} No repository yet; the name is a working name.</p>
+      </div>
+      {{ end }}
+    </div>
+  </div></section>
+
+  <section id="eco" style="padding-top:6px"><div class="wrap">
+    <div class="band">
+      <h2>Planned, in the open.</h2>
+      <p>The plan and its progress are public: <a href="https://github.com/go-scikit/roadmap/blob/main/PLAN.md"><u>PLAN.md</u></a> says what each domain covers and in which wave, <a href="https://github.com/go-scikit/roadmap/blob/main/STATUS.md"><u>STATUS.md</u></a> says where each item stands. The <a href="https://go-graphalgo.github.io/docs/"><u>documentation</u></a> describes the planned packages and the references they will be validated against.</p>
+      <a class="btn btn-ghost" href="https://github.com/go-graphalgo">{{ partial "icons/github.html" . }}See the organization on GitHub →</a>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><span>go-graphalgo · <a href="https://github.com/go-graphalgo">go-graphalgo on GitHub</a> · BSD-3-Clause</span><span>planned · wave 3</span></div></footer>
+</body>
+</html>
