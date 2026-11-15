@@ -20,10 +20,8 @@
     <div>
       <h1 class="head">Graph algorithms, in pure Go.<br><span class="accent">What gonum lacks, and nothing it already has.</span></h1>
       <p class="sub">go-graphalgo is <b>planned</b> (wave 3 of the <a href="https://github.com/go-scikit/roadmap">go-scikit roadmap</a>): <b>matching</b>, <b>isomorphism</b>, <b>cut extraction</b>, the <b>centralities</b> gonum lacks and a MATLAB-style <code>graph</code>/<code>digraph</code> facade over <code>gonum/graph</code>, validated against NetworkX. No repository holds code yet.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="https://go-graphalgo.github.io/docs/">{{ partial "icons/book.html" . }}Read the plan →</a>
-        <a class="btn btn-ghost" href="https://github.com/go-scikit/roadmap/blob/main/PLAN.md">{{ partial "icons/github.html" . }}PLAN.md →</a>
-      </div>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
       <div class="trust"><span><b>planned</b> (wave 3)</span><span><b>{{ len .Site.Params.packages }}</b> packages in the plan</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
@@ -91,6 +89,6 @@ plan      github.com/go-scikit/roadmap</pre>
     </div>
   </div></section>
 
-  <footer><div class="wrap"><span>go-graphalgo · <a href="https://github.com/go-graphalgo">go-graphalgo on GitHub</a> · BSD-3-Clause</span><span>planned · wave 3</span></div></footer>
+  <footer><div class="wrap"><span>go-graphalgo · <a href="https://github.com/go-graphalgo">go-graphalgo on GitHub</a>{{ if not (partial "mantra-on.html" $) }} · BSD-3-Clause{{ end }}</span><span>planned · wave 3</span></div></footer>
 </body>
 </html>
